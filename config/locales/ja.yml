@@ -1,0 +1,10 @@
+# ja:
+#   enum:
+#     user:
+#       bicycle_model:
+#         road: "ロードバイク"
+#         mountain: "MTB"
+#         gravel_cyclocross: "グラベル・シクロ"
+#         cross_bike: "クロスバイク"
+#         triathron_bike: "タイムトライアルバイク"
+#         other: "その他"
