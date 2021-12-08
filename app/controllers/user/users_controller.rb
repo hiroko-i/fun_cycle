@@ -24,7 +24,7 @@ class User::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(@user).permit(:nickname, :profile_image, :description, :prefecture, :bicycle_model, :average_distance, :how_to_enjoy)
+    params.require(:user).permit(:nickname, :profile_image, :description, :prefecture_id, :bicycle_model, :average_distance, :how_to_enjoy)
   end
   
   def ensure_correct_user

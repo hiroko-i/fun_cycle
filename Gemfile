@@ -72,3 +72,5 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.5'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'kaminari'
+
+gem 'active_hash'
