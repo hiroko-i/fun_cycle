@@ -1,2 +1,43 @@
-<h1>User::Users#edit</h1>
-<p>Find me in app/views/user/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 mx-auto">
+      <h2 class="mt-3">プロフィール編集</h2>
+      <%= form_with model: @user, local:true do |f| %>
+        <div class="form-group">
+          <%= f.label :profile_image, "プロフィール画像" %>
+          <%= f.attachment_field :profile_image, class:"form-control-file" %>
+        </div>
+        <div class="form-group">
+          <!--背景画像-->
+        </div>
+        <div class="form-group">
+          <%= f.label :nickname, "ニックネーム" %>
+          <%= f.text_field :nickname, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :description, "自己紹介" %>
+          <%= f.text_area :description, rows:"4", class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :prefecture, "活動地域" %>
+          <%= f.text_area :description, rows:"4", class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :bicycle_model, "車種" %>
+          <%= f.text_area :description, rows:"4", class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :average_distance, "平均走行距離" %>
+          <%= f.text_area :description, rows:"4", class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :how_to_enjoy, "好きな走り方" %>
+          <%= f.text_field :how_to_enjoy, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit class:"btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

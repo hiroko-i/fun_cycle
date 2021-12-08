@@ -1,2 +1,38 @@
-<h1>User::Users#show</h1>
-<p>Find me in app/views/user/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <p>背景画像</p>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-4">
+          <%= attachment_image_tag @user, :profile_image, size: "60x60", fallback: "no_image.jpg",class:"rounded-circle" %>
+        </div>
+        <div class="col-5">
+          <ul>
+            <li><%= @user.prefecture %></li>
+            <li><%= @user.bicycle_model %></li>
+            <li><%= @user.average_distance %></li>
+            <li><%= @user.how_to_enjoy %></li>
+          </ul>
+        </div>
+        <div class="col-3">
+          <% if @user.id == current_user.id %>
+            <%=  link_to "編集", edit_user_path(@user), class:"btn btn-outline-secondary"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div>
+        <%= @user.description %>
+      </div>
+    </div>
+    <div>
+      <h3><%= @user.nickname %>さんのおすすめスポット</h3>
+      <div class="d-flex pagenation justify-content-center mt-3">
+        <%= paginate @post %>
+      </div>
+    </div>
+  </div>
+</div>
