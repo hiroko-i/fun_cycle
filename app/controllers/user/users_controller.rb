@@ -9,7 +9,7 @@ class User::UsersController < ApplicationController
 
   def edit
   end
-  
+
   def update
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "プロフィールを変更しました"
@@ -19,6 +19,8 @@ class User::UsersController < ApplicationController
   end
 
   def index
+    @users = User.all
+    @users = User.page(params[:page]).per(12)
   end
 
   private
@@ -26,7 +28,7 @@ class User::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:nickname, :profile_image, :description, :prefecture_id, :bicycle_model, :average_distance, :how_to_enjoy)
   end
-  
+
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user == current_user

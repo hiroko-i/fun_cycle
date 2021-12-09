@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_08_122348) do
+ActiveRecord::Schema.define(version: 2021_12_09_020217) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_12_08_122348) do
     t.integer "genre"
     t.string "title"
     t.text "explanation"
-    t.integer "prefecture_id"
+    t.integer "prefecture_id", default: 0
     t.string "place"
     t.string "address"
     t.datetime "created_at", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_12_08_122348) do
     t.datetime "updated_at", null: false
     t.string "profile_image_id"
     t.text "description"
-    t.integer "prefecture_id"
+    t.integer "prefecture_id", default: 0
     t.integer "bicycle_model"
     t.integer "average_distance"
     t.string "how_to_enjoy"
