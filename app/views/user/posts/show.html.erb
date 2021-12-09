@@ -1,2 +1,48 @@
-<h1>User::Posts#show</h1>
-<p>Find me in app/views/user/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10 mb-3">
+      <div>
+        <% if @post.user.id == current_user.id %>
+          <%=  link_to "編集", edit_post_path(@post), class:"btn btn-outline-secondary"%>
+        <% end %>
+      </div>
+      <div>
+        <%= attachment_image_tag @post, :image, fallback: "no_image.jpg", class:"img-fluid" %>
+      </div>
+      <p class=""><%= @post.updated_at.strftime('%Y/%m/%d') %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 mb-3">
+      <h3><%= @post.title %></h3>
+      <p><%= @post.prefecture.name %>/<%= @post.place %></p>
+      <div>
+        <%= attachment_image_tag @post.user, :profile_image, size: "100x100", fallback: "no_image.jpg",class:"rounded-circle" %>
+        <%= @post.user.nickname %>
+        <p>thanks</p>
+      </div>
+      <div class="border py-3">
+        <%= @post.explanation %>
+      </div>
+      <table class="table">
+        <tbody class="table-light">
+          <tr>
+            <td>〒</td>
+            <td><%= @post.address %></td>
+          </tr>
+          <tr>
+            <td>タグ</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-10 mb-3">
+      <div class="border">
+        地図
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>

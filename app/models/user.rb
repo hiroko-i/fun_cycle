@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  validates :nickname, uniqueness: true, length: { in:1..30 }
+  validates :nickname, presence: true, uniqueness: true, length: { in:1..30 }
   validates :description, length: { maximum: 400 }
 
   # プロフィールのプルダウン項目

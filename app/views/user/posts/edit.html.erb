@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 mx-auto">
-      <h2 class="mt-3">サイクルスポット新規投稿</h2>
+      <h2 class="mt-3">サイクルスポット編集</h2>
       <%= form_with model: @post, local:true do |f| %>
         <div class="form-group">
           <%= f.label :image, "写真" %><br>
@@ -12,7 +12,7 @@
           <%= f.text_field :title, class:"form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :explanation, "説明" %>
+          <%= f.label :explanation, "自己紹介" %>
           <%= f.text_area :explanation, rows:"4", class:"form-control" %>
         </div>
         <div class="form-group">
@@ -28,15 +28,15 @@
           <%= f.text_field :address, class:"form-control", placeholder:"東京都世田谷区多摩川○-○" %>
         </div>
         <div class="form-group">
-          <%= f.label :genre, "ジャンル" %><br>
-          <%= f.select :genre, Post.genres.keys, {prompt: "--選択してください--"} %>
+          <%= f.label :genre, "ジャンル" %>
+          <%= f.select :gennre, Post.genres.keys, {prompt: "--選択してください--"} %>
         </div>
         <!--<div class="form-group">-->
         <!--  %= f.label :tag, "タグ" %>-->
         <!--  %= f.text_field :tag, class:"form-control", placeholder:"#サイクルラック,#春,#峠" %>-->
         <!--</div>-->
         <div class="form-group">
-          <%= f.submit "投稿", class:"btn btn-success" %>
+          <%= f.submit "変更を保存", class:"btn btn-success" %>
         </div>
       <% end %>
     </div>
