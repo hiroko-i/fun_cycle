@@ -31,10 +31,10 @@
           <%= f.label :genre, "ジャンル" %><br>
           <%= f.select :genre, Post.genres.keys, {prompt: "--選択してください--"} %>
         </div>
-        <!--<div class="form-group">-->
-        <!--  %= f.label :tag, "タグ" %>-->
-        <!--  %= f.text_field :tag, class:"form-control", placeholder:"#サイクルラック,#春,#峠" %>-->
-        <!--</div>-->
+        <div class="form-group">
+          <%= f.label :tag, "タグ(,で区切って複数のタグを投稿してください)" %>
+          <%= f.text_field :name, class:"form-control", placeholder:"サイクルラック,春,峠" %>
+        </div>
         <div class="form-group">
           <%= f.submit "投稿", class:"btn btn-success" %>
         </div>

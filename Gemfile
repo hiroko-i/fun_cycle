@@ -74,3 +74,6 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'kaminari'
 
 gem 'active_hash'
+
+gem 'geocoder'
+gem 'dotenv-rails'
