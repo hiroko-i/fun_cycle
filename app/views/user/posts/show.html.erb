@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+    <h2>サイクルスポット</h2>
     <div class="col-10 mb-3">
       <div>
         <% if @post.user.id == current_user.id %>
@@ -74,6 +75,47 @@
           src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
         </script>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 mb-3">
+      <h3>コメント投稿フォーム</h3>
+      <div>
+        <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+          <div>
+            <%= f.text_area :comment, rows:'4' %>
+          </div>
+          <div>
+            <%= f.submit "コメント投稿", class:'btn btn-secondary mt-3' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 mb-3">
+      <h3>コメント一覧<span><%= link_to "#{@post.post_comments.count} コメント", post_path(@post.id) %></span></h3>
+      <ul>
+        <% @post.post_comments.each do |post_comment| %>
+          <li>
+            <div class="row">
+              <div class="col-4 mb-3">
+                <%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", fallback: "no_image.jpg", class:"rounded-circle" %>
+              </div>
+              <div class="col-8 mb-3">
+                <div class="border bg-light">
+                  <%= post_comment.comment %>
+                </div>
+                <div>
+                  <% if post_comment.user == current_user %>
+                    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-danger" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
