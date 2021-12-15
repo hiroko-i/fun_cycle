@@ -20,7 +20,21 @@
       <div>
         <%= attachment_image_tag @post.user, :profile_image, size: "100x100", fallback: "no_image.jpg",class:"rounded-circle" %>
         <%= @post.user.nickname %>
-        <p>thanks</p>
+        <% if @post.thanked_by(current_user) %>
+          <p>thanks!
+            <%= link_to post_thanks_path(@post), method: :delete do %>
+              <i class="fas fa-hand-holding-heart text-danger"></i>
+            <% end %>
+            <%= @post.thanks.count %>
+          </p>
+        <% else %>
+          <p>thanks!
+            <%= link_to post_thanks_path(@post), method: :create do %>
+              <i class="fas fa-hand-holding-heart text-dark"></i>
+            <% end %>
+            <%= @post.thanks.count %>
+          </p>
+        <% end %>
       </div>
       <div class="border py-3">
         <%= @post.explanation %>
