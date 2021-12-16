@@ -21,21 +21,9 @@
       <div>
         <%= attachment_image_tag @post.user, :profile_image, size: "100x100", fallback: "no_image.jpg",class:"rounded-circle" %>
         <%= @post.user.nickname %>
-        <% if @post.thanked_by(current_user) %>
-          <p>thanks!
-            <%= link_to post_thanks_path(@post), method: :delete do %>
-              <i class="fas fa-hand-holding-heart text-danger"></i>
-            <% end %>
-            <%= @post.thanks.count %>
-          </p>
-        <% else %>
-          <p>thanks!
-            <%= link_to post_thanks_path(@post), method: :create do %>
-              <i class="fas fa-hand-holding-heart text-dark"></i>
-            <% end %>
-            <%= @post.thanks.count %>
-          </p>
-        <% end %>
+      </div>
+      <div id="thanks-btn_<%= @post.id %>">
+        <%= render "user/thanks/thanks-btn", post: @post %>
       </div>
       <div class="border py-3">
         <%= @post.explanation %>
@@ -109,23 +97,24 @@
   </div>
   <div class="row">
     <div class="col-10 mb-3">
-      <h3>コメント一覧<span><%= "#{@post.post_comments.count} コメント" %></span></h3>
+      <h3>コメント一覧<span><%= "#{@post.post_comments.count}件" %></span></h3>
       <ul>
         <% @post.post_comments.each do |post_comment| %>
           <li>
             <div class="row">
-              <div class="col-4 mb-3">
-                <%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", fallback: "no_image.jpg", class:"rounded-circle" %>
+              <div class="col-2 mb-3">
+                <%= link_to user_path(post_comment.user.id) %>
+                  <%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", fallback: "no_image.jpg", class:"rounded-circle" %>
+                  <%= post_comment.user.nickname %>
+                <% end %>
               </div>
-              <div class="col-8 mb-3">
-                <div class="border bg-light">
-                  <%= post_comment.comment %>
-                </div>
-                <div>
-                  <% if post_comment.user == current_user %>
-                    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-danger" %>
-                  <% end %>
-                </div>
+              <div class="col-8 mb-3 comment-box">
+                <%= post_comment.comment %>
+              </div>
+              <div class="col-2 mb-3">
+                <% if post_comment.user == current_user %>
+                  <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-danger" %>
+                <% end %>
               </div>
             </div>
           </li>

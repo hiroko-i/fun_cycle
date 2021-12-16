@@ -11,7 +11,7 @@ class Post < ApplicationRecord
   attachment :image
   
   #ありがとう機能
-  def thanked_by(user)
+  def thanked_by?(user)
     thanks.where(user_id: user.id).exists?
   end
   

@@ -1,9 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-12 mb-3">
-      <p>背景画像</p>
-    </div>
-    <div class="col-12 mb-3">
       <div class="row">
         <div class="col-4">
           <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpg",class:"rounded-circle" %></br>
@@ -24,16 +21,37 @@
         </div>
       </div>
     </div>
-    <div class="col-12 mb-3">
-      <div class="border">
-        <%= @user.description %>
+  </div>
+  <div class="col-12 mb-3">
+    <div class="border">
+      <%= @user.description %>
+    </div>
+  </div>
+  <div>
+    <h3><%= @user.nickname %>さんのおすすめスポット</h3>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+    <% @posts.each do |post| %>
+      <div class="col">
+        <div class="card h-100 shadow-lg">
+          <%= link_to post_path(post) do %>
+            <%= attachment_image_tag post, :image, width: 50, class:"card-img-top img-fluid", fallback:"no_image.jpg" %>
+          <% end %>
+          <div class="card-body">
+            <p class="card-title text-dark">
+              <%= link_to post.title, post_path(post) %>
+            </p>
+            <div class="card-text">
+              <p class="text-secondary"><%= post.prefecture.name %></p>
+              <p class="text-secondary"><%= post.place %></p>
+              <p class="text-secondary"><%= post.genre %></p>
+            </div>
+          </div>
+        </div>
       </div>
+    <% end %>
     </div>
     <div>
-      <h3><%= @user.nickname %>さんのおすすめスポット</h3>
-      <div class="d-flex pagenation justify-content-center mt-3">
-        <!--= paginate @post %>-->
-      </div>
+      <%= paginate @posts %>
     </div>
   </div>
 </div>

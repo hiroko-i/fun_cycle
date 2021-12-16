@@ -1,0 +1,13 @@
+<% if post.thanked_by?(current_user) %>
+  thanks!!!
+  <%= link_to post_thanks_path(post), method: :delete, remote: true do %>
+    <i class="fas fa-hand-holding-heart text-danger"></i>
+  <% end %>
+  <%= post.thanks.count %>
+<% else %>
+  thanks <i class="fas fa-share"></i>
+  <%= link_to post_thanks_path(post), method: :post, remote: true do %>
+    <i class="fas fa-hand-holding-heart text-dark"></i>
+  <% end %>
+  <%= post.thanks.count %>
+<% end %>
