@@ -7,7 +7,7 @@
           <%=  link_to "編集", edit_post_path(@post), class:"btn btn-outline-secondary"%>
         <% end %>
       </div>
-      <div>
+      <div class="post_image">
         <%= attachment_image_tag @post, :image, fallback: "no_image.jpg", class:"img-fluid" %>
       </div>
       <p class=""><%= @post.updated_at.strftime('%Y/%m/%d') %></p>
@@ -15,6 +15,7 @@
   </div>
   <div class="row">
     <div class="col-10 mb-3">
+      <div><%= @post.genre %></div>
       <h3><%= @post.title %></h3>
       <p><%= @post.prefecture.name %>/<%= @post.place %></p>
       <div>
@@ -60,24 +61,24 @@
       <div class="border">
         <!--地図-->
         <div id="map"></div>
+        <style>
+          #map{
+              height: 200px;
+          }
+        </style>
         <script type="text/javascript">
           function initMap() {
-            var test ={lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
+            var latlng ={lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
             var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 15, 
-              center: test
+              zoom: 13, 
+              center: latlng
             });
-            var transitLayer = new google.maps.TransitLayer();
-            transitLayer.setMap(map);
-            var contentString = '住所：<%= @post.address %>';
-            var infowindow = new google.maps.InfoWindow({
-              content: contentString
-            });
+            var bikeLayer = new google.maps.BicyclingLayer();
+            bikeLayer.setMap(map);
             
             var marker = new google.maps.Marker({
-              position:test,
+              position:latlng,
               map: map,
-              title: contentString
             });
             
              marker.addListener('click', function() {
@@ -108,7 +109,7 @@
   </div>
   <div class="row">
     <div class="col-10 mb-3">
-      <h3>コメント一覧<span><%= link_to "#{@post.post_comments.count} コメント", post_path(@post.id) %></span></h3>
+      <h3>コメント一覧<span><%= "#{@post.post_comments.count} コメント" %></span></h3>
       <ul>
         <% @post.post_comments.each do |post_comment| %>
           <li>

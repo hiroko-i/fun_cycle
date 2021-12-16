@@ -12,8 +12,10 @@ Rails.application.routes.draw do
     resources :users
     
     resources :posts do
+      get 'map' => 'posts#map', on: :collection
       resource :thanks, only:[:create, :destroy]
       resources :post_comments, only:[:create, :destroy]
+      
     end
   
   end

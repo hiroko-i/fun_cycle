@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1 mb-3">
+      <h2>サイクルスポットMAP</h2>
+      <div class="border">
+        <div id="map"></div>
+        <style>
+          #map{
+              height: 600px;
+          }
+        </style>
+        <script type="text/javascript">
+          let map;
+          let marker = []; //マーカーの配列化
+          let infoWindow = []; //吹き出しの配列化
+          let markerInfo = gon.posts;
+
+          function initMap(){
+            geocoder = new google.maps.Geocoder()
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: 35.678, lng: 139.765},
+              zoom: 10
+            });
+
+            var bikeLayer = new google.maps.BicyclingLayer();
+            bikeLayer.setMap(map);
+
+            for (let i = 0; i < markerInfo.length; i++) {
+                //投稿のidを変数に指定
+                let id = markerInfo[i]['id']
+
+                // 投稿の緯度経度を取り出す
+                markerLatLng = new google.maps.LatLng({
+                  lat: markerInfo[i]['latitude'],
+                  lng: markerInfo[i]['longitude']
+                });
+
+                // 各投稿のマーカー作成
+                marker[i] = new google.maps.Marker({
+                  position: markerLatLng,
+                  map: map
+                });
+
+                // 各投稿の吹き出しを作成
+                infoWindow[i] = new google.maps.InfoWindow({
+                  content: `<a href='/posts/${ id }'>${markerInfo[i]['address']}</a>`
+                });
+
+                marker[i].addListener('click', function(){
+                  infoWindow[i].open(map, marker[i]);
+                });
+              }
+            }
+        </script>
+        <script async defer
+          src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+        </script>
+      </div>
+    </div>
+  </div>
+</div>

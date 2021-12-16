@@ -80,6 +80,7 @@ gem 'active_hash'
 # 地図
 gem 'geocoder'
 gem 'dotenv-rails'
+gem 'gon'
 
 # デプロイ
 gem 'dotenv-rails'

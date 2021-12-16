@@ -13,6 +13,10 @@ class User::PostsController < ApplicationController
     @post_comment = PostComment.new
   end
 
+  def map
+    gon.posts = Post.all
+  end
+
   def new
     @post = Post.new
   end
