@@ -75,7 +75,10 @@ gem 'bootstrap', '~> 4.5'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'kaminari'
 
+# 疑似モデル（都道府県）
 gem 'active_hash'
+
+gem 'ransack'
 
 # 地図
 gem 'geocoder'

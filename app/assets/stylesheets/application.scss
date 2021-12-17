@@ -30,32 +30,27 @@
   width: 80%;
 }
 
-// コメントの設定
+// コメントBOXの設定
 .comment-box{
     position:relative;
     width:80%;
     background:#EEEEEE;
     padding:10px;
     text-align:left;
-    border:3px solid #444444;
     color:#666666;
     font-size:15px;
-    font-weight:bold;
     border-radius:16px;
     -webkit-border-radius:16px;
     -moz-border-radius:16px;
 }
-.comment-box:after,.comment-box:before{
+
+.comment-box:after{
     border: solid transparent;
     content:'';
     height:0;
     width:0;
     pointer-events:none;
     position:absolute;
-    right:100%;
-    top:50%;
-}
-.comment-box:after{
     border-color: rgba(238, 238, 238, 0);
     border-top-width:5px;
     border-bottom-width:5px;
@@ -63,14 +58,6 @@
     border-right-width:10px;
     margin-top: -5px;
     border-right-color:#EEEEEE;
-}
-.comment-box:before{
-    border-color: rgba(68, 68, 68, 0);
-    border-top-width:8px;
-    border-bottom-width:8px;
-    border-left-width:16px;
-    border-right-width:16px;
-    margin-top: -8px;
-    margin-right: 3px;
-    border-right-color:#444444;
+    right:100%;
+    top:34%;-width:5px;
 }

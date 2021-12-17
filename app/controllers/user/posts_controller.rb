@@ -11,6 +11,7 @@ class User::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @post_comment = PostComment.new
+    gon.posts = Post.all
   end
 
   def map

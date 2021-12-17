@@ -31,11 +31,11 @@
       <table class="table">
         <tbody class="table-light">
           <tr>
-            <td>〒</td>
+            <td><i class="fas fa-map-marker-alt"></i></td>
             <td><%= @post.address %></td>
           </tr>
           <tr>
-            <td>タグ</td>
+            <td><i class="fas fa-tag"></i></td>
             <td>
               <% @post_tags.each do |tag| %>
                 <span>#<%= tag.name %></span>
@@ -51,28 +51,51 @@
         <div id="map"></div>
         <style>
           #map{
-              height: 200px;
+              height: 300px;
           }
         </style>
         <script type="text/javascript">
+          let map;
+          let marker = []; //マーカーの配列化
+          let infoWindow = []; //吹き出しの配列化
+          let markerInfo = gon.posts;
+          
           function initMap() {
             var latlng ={lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
-            var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 13, 
+            map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 13,
               center: latlng
             });
+            
             var bikeLayer = new google.maps.BicyclingLayer();
             bikeLayer.setMap(map);
-            
-            var marker = new google.maps.Marker({
-              position:latlng,
-              map: map,
-            });
-            
-             marker.addListener('click', function() {
-               infowindow.open(map, marker);
-             });
-          } 
+
+            for (let i = 0; i < markerInfo.length; i++) {
+                //投稿のidを変数に指定
+                let id = markerInfo[i]['id']
+
+                // 投稿の緯度経度を取り出す
+                markerLatLng = new google.maps.LatLng({
+                  lat: markerInfo[i]['latitude'],
+                  lng: markerInfo[i]['longitude']
+                });
+
+                // 各投稿のマーカー作成
+                marker[i] = new google.maps.Marker({
+                  position: markerLatLng,
+                  map: map
+                });
+
+                // 各投稿の吹き出しを作成
+                infoWindow[i] = new google.maps.InfoWindow({
+                  content: `<a href='/posts/${ id }'>${markerInfo[i]['address']}</a>`
+                });
+
+                marker[i].addListener('click', function(){
+                  infoWindow[i].open(map, marker[i]);
+                });
+              }
+            }
         </script>
         <script async defer
           src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
@@ -82,14 +105,14 @@
   </div>
   <div class="row">
     <div class="col-10 mb-3">
-      <h3>コメント投稿フォーム</h3>
+      <h3>コメント投稿</h3>
       <div>
         <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
           <div>
             <%= f.text_area :comment, rows:'4', class:"form-control" %>
           </div>
           <div>
-            <%= f.submit "コメント投稿", class:'btn btn-secondary mt-3' %>
+            <%= f.submit "送信", class:'btn btn-secondary mt-3' %>
           </div>
         <% end %>
       </div>
@@ -97,23 +120,25 @@
   </div>
   <div class="row">
     <div class="col-10 mb-3">
-      <h3>コメント一覧<span><%= "#{@post.post_comments.count}件" %></span></h3>
+      <h3>コメント一覧<span><%= "(#{@post.post_comments.count}件)" %></span></h3>
       <ul>
         <% @post.post_comments.each do |post_comment| %>
-          <li>
+          <li class="list-unstyled">
             <div class="row">
               <div class="col-2 mb-3">
-                <%= link_to user_path(post_comment.user.id) %>
+                <%= link_to user_path(post_comment.user.id) do %>
                   <%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", fallback: "no_image.jpg", class:"rounded-circle" %>
-                  <%= post_comment.user.nickname %>
+                  <p class="text-dark"><%= post_comment.user.nickname %></p>
                 <% end %>
               </div>
               <div class="col-8 mb-3 comment-box">
                 <%= post_comment.comment %>
               </div>
-              <div class="col-2 mb-3">
+              <div class="col-2 align-self-end mb-3">
                 <% if post_comment.user == current_user %>
-                  <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-danger" %>
+                  <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-outline-danger" do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
                 <% end %>
               </div>
             </div>

@@ -9,8 +9,11 @@ Rails.application.routes.draw do
     root :to => 'homes#top'
     get '/about' => 'homes#about', as:'about'
     
-    resources :users
+    get 'search/users' => 'searches#user_index'
+    get 'search/posts' => 'searches#post_index'
     
+    resources :users
+
     resources :posts do
       get 'map' => 'posts#map', on: :collection
       resource :thanks, only:[:create, :destroy]
