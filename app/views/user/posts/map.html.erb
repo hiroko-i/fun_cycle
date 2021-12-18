@@ -46,10 +46,14 @@
                 position: markerLatLng,
                 map: map
               });
-
+              
+              contentString = `<h6><a href='/posts/${ id }'>${markerInfo[i]['title']}</a></h6>` + 
+                `<p>${markerInfo[i]['genre']}</p>`
+                ;
+              
               // 各投稿の吹き出しを作成
               infoWindow[i] = new google.maps.InfoWindow({
-                content: `<a href='/posts/${ id }'>${markerInfo[i]['address']}</a>`
+                content: contentString
               });
 
               marker[i].addListener('click', function(){
