@@ -7,7 +7,7 @@
           <%= f.text_field :title_or_explanation_cont, placeholder: "投稿内容で探す" %>
           
           <%= f.label "都道府県" %>
-          <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name %>        
+          <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, include_blank: "---" %>        
           <%= f.label "地域名・道・住所" %>
           <%= f.text_field :place_or_address_cont, placeholder: "道の名前・地域名で探す" %>
           

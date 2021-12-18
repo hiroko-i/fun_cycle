@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
           <%= f.label :prefectur, "都道府県" %><br>
-          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
+          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "---" %>
         </div>
         <div class="form-group">
           <%= f.label :place, "場所（地域名・道の名前）" %><br>
