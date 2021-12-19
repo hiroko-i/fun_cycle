@@ -5,6 +5,12 @@
       <div>
         <%= search_form_for @q, url: search_users_path do |f| %>
           <%= f.text_field :nickname_or_how_to_enjoy_cont, placeholder: "ニックネーム・走り方で探す" %>
+          <%= f.label :prefecture, "活動地域" %>
+          <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, include_blank: "---" %>
+          <%= f.label :bicycle_model, "車種" %><br>
+          <%= f.select :bicycle_model_eq, User.bicycle_models.keys, include_blank: "---" %>
+          <%= f.label :average_distance, "平均走行距離" %><br>
+          <%= f.select :average_distance_eq, User.average_distances.keys, include_blank: "---" %>
           <%= f.submit "検索", class: "search-btn" %>
         <% end %>
       </div>

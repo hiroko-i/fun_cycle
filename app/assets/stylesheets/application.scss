@@ -16,6 +16,7 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+@import 'swiper/swiper-bundle';
 
 // カードの設定
 .card-img-top {
@@ -60,4 +61,34 @@
     border-right-color:#EEEEEE;
     right:100%;
     top:34%;-width:5px;
+}
+
+// top
+.image1 {
+  background-image: image-url("top1.jpg");
+  background-size: cover;
+  background-position: bottom;
+}
+
+.image2 {
+  background-image: image-url("top2.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.image3 {
+  background-image: image-url("top3.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.image4 {
+  background-image: image-url("top4.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.swiper {
+   width: 100%;
+   height: 600px;
 }

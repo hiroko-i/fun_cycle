@@ -1,5 +1,7 @@
 {
   "name": "fun_cycle",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "swiper": "^7.3.3"
+  }
 }

@@ -18,3 +18,6 @@
 //= require activestorage
 // require turbolinks
 //= require_tree .
+
+//= require swiper/swiper-bundle.js
+//= require swiper.js
