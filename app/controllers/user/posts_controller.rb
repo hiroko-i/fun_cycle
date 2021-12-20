@@ -3,8 +3,7 @@ class User::PostsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all
-    @posts = Post.page(params[:page]).per(12)
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(3)
   end
 
   def show
