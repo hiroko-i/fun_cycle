@@ -1,51 +1,53 @@
 <div class="container">
   <div class="row">
-    <h2>サイクルスポット</h2>
-    <div class="col-10 mb-3">
-      <div>
-        <% if @post.user.id == current_user.id %>
-          <%=  link_to "編集", edit_post_path(@post), class:"btn btn-outline-secondary"%>
-        <% end %>
+    <div class="col-lg-10 offset-lg-1 mx-auto">
+      <h2 class="my-4 fw-bold">サイクルスポット</h2>
+      <div class="card">
+        <%= attachment_image_tag @post, :image, fallback: "no_image.jpg", class:"card-img img-fluid" %>
       </div>
-      <div class="post_image">
-        <%= attachment_image_tag @post, :image, fallback: "no_image.jpg", class:"img-fluid" %>
-      </div>
-      <p class=""><%= @post.updated_at.strftime('%Y/%m/%d') %></p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10 mb-3">
-      <div><%= @post.genre %></div>
-      <h3><%= @post.title %></h3>
-      <p><%= @post.prefecture.name %>/<%= @post.place %></p>
-      <div>
-        <%= attachment_image_tag @post.user, :profile_image, size: "100x100", fallback: "no_image.jpg",class:"rounded-circle" %>
-        <%= @post.user.nickname %>
-      </div>
-      <div id="thanks-btn_<%= @post.id %>">
-        <%= render "user/thanks/thanks-btn", post: @post %>
-      </div>
-      <div class="border py-3">
-        <%= @post.explanation %>
-      </div>
-      <table class="table">
-        <tbody class="table-light">
-          <tr>
-            <td><i class="fas fa-map-marker-alt"></i></td>
-            <td><%= @post.address %></td>
-          </tr>
-          <tr>
-            <td><i class="fas fa-tag"></i></td>
-            <td>
-              <% @post_tags.each do |tag| %>
-                <span>#<%= tag.name %></span>
+      <p class="text-end"><%= @post.updated_at.strftime('%Y/%m/%d') %></p>
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-end">
+            <div class="btn btn-sm btn-secondary"><%= @post.genre %></div>
+            <div class="ms-4"><i class="fas fa-map-marker-alt"></i><%= @post.prefecture.name %>/<%= @post.place %></div>
+          </div>
+          <h3 class="fw-bold py-3"><%= @post.title %></h3>
+          <div class="d-flex justify-content-between align-items-end mb-3">
+            <div>
+              <%= attachment_image_tag @post.user, :profile_image, size: "100x100", fallback: "no_image.jpg",class:"rounded-circle" %>
+              <div class="fs-5 fw-bold"><%= @post.user.nickname %></div>
+            </div>
+            <div>
+              <% if @post.user.id == current_user.id %>
+                <%=  link_to "編集", edit_post_path(@post), class:"btn btn-outline-secondary"%>
               <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-10 mb-3">
+            </div>
+          </div>
+          <div id="thanks-btn_<%= @post.id %>">
+            <%= render "user/thanks/thanks-btn", post: @post %>
+          </div>
+          <div class="border py-3">
+            <%= @post.explanation %>
+          </div>
+          <table class="table">
+            <tbody class="table-light">
+              <tr>
+                <td><i class="fas fa-map-marker-alt"></i></td>
+                <td><%= @post.address %></td>
+              </tr>
+              <tr>
+                <td><i class="fas fa-tag"></i></td>
+                <td>
+                  <% @post_tags.each do |tag| %>
+                    <span>#<%= tag.name %></span>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <div class="border">
         <!--地図-->
         <div id="map"></div>
@@ -59,38 +61,38 @@
           let marker = []; //マーカーの配列化
           let infoWindow = []; //吹き出しの配列化
           let markerInfo = gon.posts;
-          
+  
           function initMap() {
             var latlng ={lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 13,
               center: latlng
             });
-            
+  
             var bikeLayer = new google.maps.BicyclingLayer();
             bikeLayer.setMap(map);
-
+  
             for (let i = 0; i < markerInfo.length; i++) {
                 //投稿のidを変数に指定
                 let id = markerInfo[i]['id']
-
+  
                 // 投稿の緯度経度を取り出す
                 markerLatLng = new google.maps.LatLng({
                   lat: markerInfo[i]['latitude'],
                   lng: markerInfo[i]['longitude']
                 });
-
+  
                 // 各投稿のマーカー作成
                 marker[i] = new google.maps.Marker({
                   position: markerLatLng,
                   map: map
                 });
-
+  
                 // 各投稿の吹き出しを作成
                 infoWindow[i] = new google.maps.InfoWindow({
                   content: `<a href='/posts/${ id }'>${markerInfo[i]['address']}</a>`
                 });
-
+  
                 marker[i].addListener('click', function(){
                   infoWindow[i].open(map, marker[i]);
                 });
@@ -101,50 +103,46 @@
           src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
         </script>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10 mb-3">
-      <h3>コメント投稿</h3>
       <div>
-        <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-          <div>
-            <%= f.text_area :comment, rows:'4', class:"form-control" %>
-          </div>
-          <div>
-            <%= f.submit "送信", class:'btn btn-secondary mt-3' %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10 mb-3">
-      <h3>コメント一覧<span><%= "(#{@post.post_comments.count}件)" %></span></h3>
-      <ul>
-        <% @post.post_comments.each do |post_comment| %>
-          <li class="list-unstyled">
-            <div class="row">
-              <div class="col-2 mb-3">
-                <%= link_to user_path(post_comment.user.id) do %>
-                  <%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", fallback: "no_image.jpg", class:"rounded-circle" %>
-                  <p class="text-dark"><%= post_comment.user.nickname %></p>
-                <% end %>
-              </div>
-              <div class="col-8 mb-3 comment-box">
-                <%= post_comment.comment %>
-              </div>
-              <div class="col-2 align-self-end mb-3">
-                <% if post_comment.user == current_user %>
-                  <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-outline-danger" do %>
-                    <i class="fas fa-trash-alt"></i>
-                  <% end %>
-                <% end %>
-              </div>
+        <h3>コメント投稿</h3>
+        <div>
+          <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+            <div>
+              <%= f.text_area :comment, rows:'4', class:"form-control" %>
             </div>
-          </li>
-        <% end %>
-      </ul>
+            <div>
+              <%= f.submit "送信", class:'btn btn-secondary mt-3' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <h3>コメント一覧<span><%= "(#{@post.post_comments.count}件)" %></span></h3>
+        <ul>
+          <% @post.post_comments.each do |post_comment| %>
+            <li class="list-unstyled">
+              <div class="row">
+                <div class="col-2 mb-3">
+                  <%= link_to user_path(post_comment.user.id) do %>
+                    <%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", fallback: "no_image.jpg", class:"rounded-circle" %>
+                    <p class="text-dark"><%= post_comment.user.nickname %></p>
+                  <% end %>
+                </div>
+                <div class="col-8 mb-3 comment-box">
+                  <%= post_comment.comment %>
+                </div>
+                <div class="col-2 align-self-end mb-3">
+                  <% if post_comment.user == current_user %>
+                    <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-outline-danger" do %>
+                      <i class="fas fa-trash-alt"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

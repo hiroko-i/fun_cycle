@@ -1,0 +1,47 @@
+  <div class="row mt-4">
+    <div class="col-sm-12 col-md-8 mx-auto border-top">
+      <h4 class="mt-4 fw-bold">住所検索</h4>
+      <!--検索-->
+      <input id="address" type="textbox" placeholder="地名・場所">
+      <input type="button" value="検索" onclick="codeAddress()">
+      <!--地図-->
+      <div class="border mt-3">
+        <div id="map"></div>
+        <style>
+          #map{
+              height: 300px;
+          }
+        </style>
+        <script type="text/javascript">
+          let map;
+          let geocoder;
+    
+          function initMap(){
+            geocoder = new google.maps.Geocoder()
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: 35.678, lng: 139.765},
+              zoom: 13
+            });
+    
+            var bikeLayer = new google.maps.BicyclingLayer();
+            bikeLayer.setMap(map);
+          }
+          
+          function codeAddress(){
+            let inputAddress = document.getElementById('address').value;
+          
+            geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+              if (status == 'OK') {
+                map.setCenter(results[0].geometry.location);
+              } else {
+                alert('該当結果がありません。違う地名で検索しましょう！');
+              }
+            });
+          }  
+        </script>
+        <script async defer
+          src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+        </script>
+      </div>
+    </div>
+  </div>

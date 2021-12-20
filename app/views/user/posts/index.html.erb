@@ -1,36 +1,14 @@
 <div class="container">
-  <div class="d-flex justify-content-between align-items-end">
+  <div class="d-flex justify-content-between align-items-end my-4">
     <h2>投稿一覧</h2>
     <div>
-      <%= link_to map_posts_path, class:"btn btn-sm btn-outline-secondary" do %>
+      <%= link_to map_posts_path, class:"btn btn-sm btn-secondary" do %>
         <i class="fas fa-external-link-alt"></i><span> 投稿一覧MAP</span>
       <% end %>
     </div>
   </div>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-    <% @posts.each do |post| %>
-      <div class="col">
-        <div class="card h-100 shadow-lg">
-          <%= link_to post_path(post) do %>
-            <%= attachment_image_tag post, :image, width: 50, class:"card-img-top img-fluid", fallback:"no_image.jpg" %>
-          <% end %>
-          <div class="card-body">
-            <p class="card-title text-dark">
-              <%= link_to post.title, post_path(post) %>
-            </p>
-            <div class="card-text">
-              <p class="text-secondary"><%= post.prefecture.name %></p>
-              <p class="text-secondary"><%= post.place %></p>
-              <p class="text-secondary"><%= post.genre %></p>
-              <%= link_to user_path(post.user) do %>
-                <%= attachment_image_tag post.user, :profile_image, size:"30x30", fallback: "no_image.jpg", class:"rounded-circle" %>
-                <%= post.user.nickname %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+    <%= render 'user/shared/post_list' %>
   </div>
   <%= paginate @posts %>
 </div>
