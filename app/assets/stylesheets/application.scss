@@ -27,8 +27,11 @@
 }
 
 // 投稿画像の設定
-.post_image{
-  width: 80%;
+.card_img_toppost{
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  
 }
 
 // コメントBOXの設定
