@@ -64,13 +64,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
-
-gem 'refile', require: 'refile/rails', github: 'manfe/refile'
-gem 'refile-mini_magick'
-
 gem 'jquery-rails'
+gem 'rails-i18n', '~> 5.1'
 
 # レイアウト
+gem 'refile', require: 'refile/rails', github: 'manfe/refile'
+gem 'refile-mini_magick'
 gem 'bootstrap', '~> 5'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'kaminari'
