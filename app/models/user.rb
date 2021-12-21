@@ -10,8 +10,11 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  validates :nickname, presence: true, uniqueness: true, length: { in:1..30 }
+  validates :nickname, presence: true, uniqueness: true, length: { in: 1..30 }
   validates :description, length: { maximum: 400 }
+  validates :prefecture_id, inclusion: { in: 0..47}
+  validates :how_to_enjoy, length: { maximum: 100 }
+  
 
   # プロフィールのプルダウン項目
   enum bicycle_model: { "ロードバイク" => 0, "クロスバイク" => 1, "MTB" => 2, "グラベル・シクロクロス" => 3, "トライアスロンバイク" => 4, "その他" => 5 }

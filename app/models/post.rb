@@ -5,10 +5,19 @@ class Post < ApplicationRecord
   has_many :thanks, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   
+  attachment :image
+  
+  validates :image, presence: true
+  validates :title, presence: true, length: { maximum: 50}
+  validates :explanation, presence: true
+  validates :prefecture_id, presence: true, inclusion: { in: 1..47}
+  validates :place, presence: true
+  validates :address, presence: true
+  validates :genre, presence: true, inclusion: { in: 0..5}
+  
+  # 地図
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
-  
-  attachment :image
   
   #ありがとう機能
   def thanked_by?(user)
