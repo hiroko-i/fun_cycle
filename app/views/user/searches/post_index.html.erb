@@ -5,7 +5,7 @@
           <%= link_to "サイクリングスポット", search_posts_path, class:"active pt-3 fs-5 fw-bold nav-link px-4" %>
         </li>
         <li class="nav-item">
-          <%= link_to "会員", search_users_path, class:"pt-3 fs-5 nav-link link-secondary px-4" %>
+          <%= link_to "ユーザー", search_users_path, class:"pt-3 fs-5 nav-link link-secondary px-4" %>
         </li>
       </ul>
   </div>
@@ -30,7 +30,7 @@
     <% end %>
   </div>
   <% if @posts.length !=0 %>
-      <%= render 'user/shared/post_list' %>
+    <%= render 'user/shared/post_list' %>
   <% else %>
     検索結果はありません.他のキーワードで検索してみましょう！！
   <% end %>
