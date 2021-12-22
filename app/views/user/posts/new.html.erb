@@ -2,6 +2,12 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 mx-auto">
       <h2 class="my-4 fw-bold">新規投稿</h2>
+      <% if @post.errors.any? %>
+        <%= @post.errors.count %>件のエラーが発生しました
+        <% @post.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
       <%= form_with model: @post, local:true do |f| %>
         <div class="mb-3">
           <%= f.label :image, "写真", class:"form-label" %><br>
@@ -17,7 +23,7 @@
         </div>
         <div class="mb-3">
           <%= f.label :prefectur, "都道府県", class:"form-label" %><br>
-          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "--選択してください--"}, class:"form-select" %>
+          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "false"}, class:"form-select" %>
         </div>
         <div class="mb-3">
           <%= f.label :place, "場所（地域名・道の名前）", class:"form-label" %><br>

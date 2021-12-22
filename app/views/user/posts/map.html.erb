@@ -1,11 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-10 offset-1 mb-3">
-      <h2>サイクルスポットMAP</h2>
+      <h2 class="mt-3 fw-bold">CYCLING MAP</h2>
       <p>走る地域の周辺情報を探してみましょう！</p>
-      <!--検索-->
+      <!--検索フォーム-->
+      <div class="d-flex">
+        
       <input id="address" type="textbox" placeholder="地名・場所">
       <input type="button" value="検索" onclick="codeAddress()">
+      <div class="ms-auto">
+        <%= link_to search_posts_path, class:"link-secondary" do %>
+          <i class="fas fa-external-link-alt me-1"></i><span>詳細検索</span>
+        <% end %>
+      </div>
+      </div>
       <!--地図-->
       <div class="border mt-3">
         <div id="map"></div>
@@ -46,12 +54,11 @@
                 position: markerLatLng,
                 map: map
               });
-              
-              contentString = `<h6><a href='/posts/${ id }'>${markerInfo[i]['title']}</a></h6>` + 
-                `<p>${markerInfo[i]['genre']}</p>`
-                ;
-              
+
               // 各投稿の吹き出しを作成
+              contentString = `<h6><a href='/posts/${ id }'>${markerInfo[i]['title']}</a></h6>` +
+                `<p>${markerInfo[i]['genre']}</p>`;
+
               infoWindow[i] = new google.maps.InfoWindow({
                 content: contentString
               });
@@ -61,10 +68,11 @@
               });
             }
           }
-          
+
+          // 検索結果
           function codeAddress(){
             let inputAddress = document.getElementById('address').value;
-          
+
             geocoder.geocode( { 'address': inputAddress}, function(results, status) {
               if (status == 'OK') {
                 map.setCenter(results[0].geometry.location);
@@ -72,10 +80,10 @@
                 alert('該当結果がありません。違う地名で検索しましょう！');
               }
             });
-          }  
+          }
         </script>
         <script async defer
-          src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+          src="https://maps.googleapis.com/maps/api/js?language=ja&v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
         </script>
       </div>
     </div>

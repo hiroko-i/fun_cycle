@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   validates :prefecture_id, presence: true, inclusion: { in: 1..47}
   validates :place, presence: true
   validates :address, presence: true
-  validates :genre, presence: true, inclusion: { in: 0..5}
+  validates :genre, presence: true
   
   # 地図
   geocoded_by :address
