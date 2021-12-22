@@ -46,7 +46,7 @@
     <% else %>
       <div class="col-6">
         <div class="d-grid">
-          <%= link_to "About fun cycle", about_path, class:"btn btn-lg btn-outline-primary" %>
+          <%= link_to "About fun cycle", about_path, class:"btn btn-lg btn-outline-secondary" %>
         </div>
       </div>
       <div class="col-6">
@@ -60,14 +60,12 @@
     <h2 class="fw-bold">新着投稿</h2>
     <div>
       <%= link_to  posts_path, class:"btn btn-secondary" do %>
-        <i class="fas fa-external-link-alt"></i><span> 投稿一覧</span>
+        <i class="fas fa-external-link-alt me-1"></i><span>投稿一覧</span>
       <% end %>
       <%= link_to map_posts_path, class:"btn btn-secondary ms-3" do %>
-        <i class="fas fa-external-link-alt"></i><span> 投稿一覧MAP</span>
+        <i class="fas fa-external-link-alt me-1"></i><span>投稿一覧MAP</span>
       <% end %>
     </div>
   </div>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-    <%= render 'user/shared/post_list' %>
-  </div>
+  <%= render 'user/shared/post_list' %>
 </div>

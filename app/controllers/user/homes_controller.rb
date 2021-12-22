@@ -1,6 +1,6 @@
 class User::HomesController < ApplicationController
   def top
-    @posts = Post.order(created_at: :desc).limit(6)
+    @posts = Post.order(created_at: :desc).limit(12)
   end
 
   def about
