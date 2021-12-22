@@ -1,13 +1,16 @@
 <div class="container">
   <div class="mt-4">
-      <ul class="nav nav-tabs nav-justified">
-        <li class="nav-item">
-          <%= link_to "サイクリングスポット", search_posts_path, class:"active pt-3 fs-5 fw-bold nav-link px-4" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "ユーザー", search_users_path, class:"pt-3 fs-5 nav-link link-secondary px-4" %>
-        </li>
-      </ul>
+    <ul class="nav nav-tabs nav-justified">
+      <li class="nav-item">
+        <%= link_to "投稿", search_posts_path, class:"active pt-3 fs-5 fw-bold nav-link px-4" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "地図", search_map_path, class:"pt-3 fs-5 nav-link link-secondary px-4" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ユーザー", search_users_path, class:"pt-3 fs-5 nav-link link-secondary px-4" %>
+      </li>
+    </ul>
   </div>
   <div class="border border-3 bg-light mt-4 p-4">
     <%= search_form_for @q, url: search_posts_path do |f| %>
@@ -32,7 +35,7 @@
   <% if @posts.length !=0 %>
     <%= render 'user/shared/post_list' %>
   <% else %>
-    検索結果はありません.他のキーワードで検索してみましょう！！
+    <p class="fs-5 mt-4 text-center">検索結果はありません。他のキーワードで検索してみましょう！！</p>
   <% end %>
   <%= paginate @posts %>
 </div>

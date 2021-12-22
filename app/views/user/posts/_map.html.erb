@@ -2,8 +2,10 @@
     <div class="col-sm-12 col-md-8 mx-auto border-top">
       <h4 class="mt-4 fw-bold">住所検索</h4>
       <!--検索-->
-      <input id="address" type="textbox" placeholder="地名・場所">
-      <input type="button" value="検索" onclick="codeAddress()">
+      <div class="d-flex">
+        <input id="address" placeholder="地名・場所" class="form-control">
+        <input value="検索" onclick="codeAddress()" class="btn btn-secondary ms-3">
+      </div>
       <!--地図-->
       <div class="border mt-3">
         <div id="map"></div>

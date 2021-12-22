@@ -13,10 +13,6 @@ class User::PostsController < ApplicationController
     gon.posts = Post.all
   end
 
-  def map
-    gon.posts = Post.all
-  end
-
   def new
     @post = Post.new
   end

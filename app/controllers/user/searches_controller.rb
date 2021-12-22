@@ -10,4 +10,7 @@ class User::SearchesController < ApplicationController
     @posts = @q.result(distinct: true).page(params[:page]).per(12)
   end
 
+  def post_map
+    gon.posts = Post.all
+  end
 end

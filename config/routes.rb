@@ -11,11 +11,11 @@ Rails.application.routes.draw do
     
     get 'search/users' => 'searches#user_index'
     get 'search/posts' => 'searches#post_index'
+    get 'search/map' => 'searches#post_map'
     
     resources :users
 
     resources :posts do
-      get 'map' => 'posts#map', on: :collection
       resource :thanks, only:[:create, :destroy]
       resources :post_comments, only:[:create, :destroy]
       
