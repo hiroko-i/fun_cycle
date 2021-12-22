@@ -1,0 +1,30 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+  <% @users.each do |user| %>
+    <div class="col mt-3">
+      <div class="card h-100 shadow-sm p-2">
+        <div class="card-body">
+          <div class="d-flex align-items-center row">
+            <div class="col-5">
+              <%= link_to user_path(user) do %>
+                <%= attachment_image_tag user, :profile_image, size:"60x60", fallback: "no_image.jpg", class:"rounded-circle" %>
+              <% end %>
+            </div>
+            <div class="col-7">
+              <p class="card-title text-dark fs-5">
+                <%= link_to user.nickname, user_path(user), class:"text-dark text-decoration-none"  %>
+              </p>
+            </div>
+          </div>
+          <div class="card-text mt-3">
+            <ul class="list-unstyled">
+              <li><i class="fas fa-map-marker-alt me-2"></i><%= user.prefecture.name %></li>
+              <li><i class="fas fa-bicycle me-2"></i><%= user.bicycle_model %></li>
+              <li><i class="far fa-smile-wink me-2"></i><%= user.how_to_enjoy %></li>
+              <li><i class="fas fa-route me-2"></i><%= user.average_distance %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

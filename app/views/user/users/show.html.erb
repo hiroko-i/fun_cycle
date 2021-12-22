@@ -1,37 +1,30 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12 mb-3">
-      <div class="row">
-        <div class="col-4">
+  <div class="row mt-3">
+    <div class="col-12 mb-3 border-bottom">
+      <div class="row align-items-center">
+        <div class="col-4 text-center">
           <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpg",class:"rounded-circle" %></br>
-          <%= @user.nickname %>
+          <p class="fw-bold fs-5"><%= @user.nickname %></p>
         </div>
         <div class="col-5">
-          <ul>
-            <li><%= @user.prefecture.name %></li>
-            <li><%= @user.bicycle_model %></li>
-            <li><%= @user.average_distance %></li>
-            <li><%= @user.how_to_enjoy %></li>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i><%= @user.prefecture.name %></li>
+            <li><i class="fas fa-bicycle me-2"></i><%= @user.bicycle_model %></li>
+            <li><i class="far fa-smile-wink me-2"></i><%= @user.how_to_enjoy %></li>
+            <li><i class="fas fa-route me-2"></i><%= @user.average_distance %></li>
           </ul>
         </div>
         <div class="col-3">
           <% if @user.id == current_user.id %>
-            <%=  link_to "編集", edit_user_path(@user), class:"btn btn-outline-secondary"%>
+            <%=  link_to "編集", edit_user_path(@user), class:"btn btn-outline-secondary px-4"%>
           <% end %>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-12 mb-3">
-    <div class="border">
+    <div class="col-12 pb-3 border-bottom">
       <%= @user.description %>
     </div>
   </div>
-  <div>
-    <h3><%= @user.nickname %>さんのおすすめスポット</h3>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-      <%= render 'user/shared/post_list' %>
-    </div>
-    <div>
-      <%= paginate @posts %>
-    </div>
+  <%= render 'user/shared/post_list' %>
+  <%= paginate @posts %>
+</div>
