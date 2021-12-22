@@ -2,40 +2,43 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 mx-auto">
       <h2 class="my-4 fw-bold">プロフィール編集</h2>
-      <% if @user.errors.any? %>
-        <%= @user.errors.count %>件のエラーが発生しました
-        <% @user.errors.full_messages.each do |message| %>
-          <%= message %>
-        <% end %>
-      <% end %>
+      <div class="alert alert-danger">
+        <ul>
+          <% if @user.errors.any? %>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
       <%= form_with model: @user, local:true do |f| %>
         <div class="mb-3">
-          <%= f.label :profile_image, "プロフィール画像", class:"form-label" %><br>
+          <%= f.label :profile_image, class:"form-label" %><br>
           <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpg", class:"rounded-circle" %>
           <%= f.attachment_field :profile_image, class:"ps-4 form-control-file" %>
         </div>
         <div class="mb-3">
-          <%= f.label :nickname, "ニックネーム", class:"form-label" %>
+          <%= f.label :nickname, class:"form-label" %>
           <%= f.text_field :nickname, class:"form-control" %>
         </div>
         <div class="mb-3">
-          <%= f.label :description, "自己紹介", class:"form-label" %>
+          <%= f.label :description, class:"form-label" %>
           <%= f.text_area :description, rows:"4", class:"form-control" %>
         </div>
         <div class="mb-3">
-          <%= f.label :prefecture, "活動地域", class:"form-label" %><br>
+          <%= f.label :prefecture, class:"form-label" %><br>
           <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "false"}, class:"form-select" %>
         </div>
         <div class="mb-3">
-          <%= f.label :bicycle_model, "車種", class:"form-label" %><br>
+          <%= f.label :bicycle_model, class:"form-label" %><br>
           <%= f.select :bicycle_model, User.bicycle_models.keys, {prompt: "--選択してください--"}, class:"form-select" %>
         </div>
         <div class="mb-3">
-          <%= f.label :average_distance, "平均走行距離", class:"form-label" %><br>
+          <%= f.label :average_distance, class:"form-label" %><br>
           <%= f.select :average_distance, User.average_distances.keys, {prompt: "--選択してください--"}, class:"form-select" %>
         </div>
         <div class="mb-3">
-          <%= f.label :how_to_enjoy, "好きな走り方", class:"form-label" %>
+          <%= f.label :how_to_enjoy, class:"form-label" %>
           <p>例)街巡り、ヒルクライム、グルメライド、ツーリング 等</p>
           <%= f.text_field :how_to_enjoy, class:"form-control" %>
         </div>

@@ -6,12 +6,12 @@
       <div class="shadow-lg p-5 my-4 bg-body rounded border">
         <%= form_with model: @user, url: user_session_path, local: true do |f| %>
           <div class="mb-3">
-            <%= f.label :email, "メールアドレス", class:"form-label" %><br />
+            <%= f.label :email, class:"form-label" %><br />
             <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email", placeholder:"funcycle@gmail.com" %>
           </div>
         
           <div class="mb-3">
-            <%= f.label :password,"パスワード", class:"form-label"  %><br />
+            <%= f.label :password, class:"form-label"  %><br />
             <%= f.password_field :password, class:"form-control", autocomplete: "current-password" %>
           </div>
         

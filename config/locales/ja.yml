@@ -14,7 +14,7 @@ ja:
       # timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "続けるにはログインが必要です。"
     registrations:
-      signed_up: "会員登録が完了しました。ようこそNaganoCakeへ！"
+      signed_up: "会員登録が完了しました。ようこそFUN CYCLEへ！"
       updated: "パスワードの更新が完了しました。"
     sessions:
       signed_in: "ログインが完了しました。"
@@ -31,3 +31,32 @@ ja:
   time:
     formats:
       default: "%y/%m/%d"
+  
+  activerecord:
+    attributes:
+        user:
+          nickname: ニックネーム
+          email: メールアドレス
+          profile_image: プロフィール画像
+          description: 自己紹介
+          prefecture: 活動地域
+          bicycle_model: 車種
+          average_distance: 平均走行距離
+          how_to_enjoy: 好きな走り方
+          password: パスワード
+          encrypted_password: パスワード
+          password_confirmation: パスワード確認
+        
+        post:
+          image: 写真
+          genre: 投稿ジャンル
+          title: タイトル
+          explanation: 説明
+          prefecture_id: 都道府県
+          place: 場所〈地域名・道の名前）
+          address: 住所
+          tag: タグ
+        
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日
