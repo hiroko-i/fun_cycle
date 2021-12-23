@@ -2,15 +2,15 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 mx-auto">
       <h2 class="my-4 fw-bold">プロフィール編集</h2>
-      <div class="alert alert-danger">
-        <ul>
-          <% if @user.errors.any? %>
-            <% @user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
+      <% if @user.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+          </ul>
+        </div>
+      <% end %>
       <%= form_with model: @user, local:true do |f| %>
         <div class="mb-3">
           <%= f.label :profile_image, class:"form-label" %><br>
@@ -31,11 +31,11 @@
         </div>
         <div class="mb-3">
           <%= f.label :bicycle_model, class:"form-label" %><br>
-          <%= f.select :bicycle_model, User.bicycle_models.keys, {prompt: "--選択してください--"}, class:"form-select" %>
+          <%= f.select :bicycle_model, User.bicycle_models_i18n.invert, {}, class:"form-select" %>
         </div>
         <div class="mb-3">
           <%= f.label :average_distance, class:"form-label" %><br>
-          <%= f.select :average_distance, User.average_distances.keys, {prompt: "--選択してください--"}, class:"form-select" %>
+          <%= f.select :average_distance, User.average_distances_i18n.invert, {}, class:"form-select" %>
         </div>
         <div class="mb-3">
           <%= f.label :how_to_enjoy, class:"form-label" %>

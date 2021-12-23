@@ -25,7 +25,9 @@ class Post < ApplicationRecord
   end
   
   # 投稿の選択肢
-  enum genre: { "グルメ" => 0, "道・峠" => 1, "写真スポット" => 2, "自然・景色" => 3, "注意" => 4, "その他" => 5 }
+  enum genre: { 
+    road: 0, view_nature: 5, food_cafe: 10, pass: 15, photospot: 20, caution: 25, others: 30
+  }
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
 

@@ -61,8 +61,10 @@
               });
 
               // 各投稿の吹き出しを作成
-              contentString = `<h6><a href='/posts/${ id }'>${markerInfo[i]['title']}</a></h6>` +
-                `<p>${markerInfo[i]['genre']}</p>`;
+              contentString = `
+                <div class="p-1">
+                  <p class="fs-6"><a href='/posts/${ id }' class="link-secondary">${markerInfo[i]['title']}</a></p>
+                </div>`;
 
               infoWindow[i] = new google.maps.InfoWindow({
                 content: contentString

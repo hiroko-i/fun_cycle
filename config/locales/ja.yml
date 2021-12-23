@@ -60,3 +60,32 @@ ja:
   attributes:
     created_at: 作成日
     updated_at: 更新日
+  
+  enums:
+    user:
+      bicycle_model:
+        roadbike: ロードバイク
+        crossbike: クロスバイク
+        mountainbike: MTB
+        gravelbike: グラベル
+        cyclocloss: シクロクロス
+        triathlonbike: トライアスロンバイク
+        others: その他
+      average_distance:
+        max20km: ~20km
+        max50km: ~50km
+        max100km: ~100km
+        max150km: ~150km
+        longrider: ロングライダー
+    
+    post:
+      genre:
+        road: 道
+        view_nature: 景色・自然
+        food_cafe: グルメ・カフェ
+        pass: 峠
+        photospot: 写真スポット
+        caution: 注意
+        others: その他
+        
+        
