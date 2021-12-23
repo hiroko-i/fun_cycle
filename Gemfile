@@ -78,6 +78,7 @@ gem 'kaminari'
 gem 'active_hash'
 
 gem 'ransack'
+gem 'enum_help'
 
 # 地図
 gem 'geocoder'

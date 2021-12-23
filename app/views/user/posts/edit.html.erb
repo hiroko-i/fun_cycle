@@ -2,15 +2,15 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 mx-auto">
       <h2 class="my-4 fw-bold">投稿編集</h2>
-      <div class="alert alert-danger">
-        <ul>
-          <% if @post.errors.any? %>
+      <% if @post.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
             <% @post.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
-          <% end %>
-        </ul>
-      </div>
+          </ul>
+        </div>
+      <% end %>
       <%= form_with model: @post, local:true do |f| %>
         <div class="mb-3">
           <%= f.label :image, class:"form-label" %><br>
@@ -38,7 +38,7 @@
         </div>
         <div class="mb-3">
           <%= f.label :genre, class:"form-label" %><br>
-          <%= f.select :genre, Post.genres.keys, {prompt: "--選択してください--"}, class:"form-select" %>
+          <%= f.select :genre, Post.genres_i18n.invert, {}, class:"form-select" %>
         </div>
         <div class="mb-3">
           <%= f.label :tag, "タグ (複数のタグは , （半角）で区切ってください)", class:"form-label" %>
