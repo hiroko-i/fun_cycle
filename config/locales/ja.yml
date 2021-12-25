@@ -53,7 +53,7 @@ ja:
           title: タイトル
           explanation: 説明
           prefecture_id: 都道府県
-          place: 場所〈地域名・道の名前）
+          place: 場所(地域名・道の名前）
           address: 住所
           tag: タグ
         
