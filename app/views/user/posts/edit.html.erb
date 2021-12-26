@@ -49,7 +49,7 @@
         </div>
       <% end %>
       <div class="mb-3 d-grid">
-        <%= link_to "投稿を削除", post_path(@post), method: :delete, class:"btn btn-outline-danger" %>
+        <%= link_to "投稿を削除", post_path(@post), method: :delete, data: {confirm: "本当に削除しますか？"}, class:"btn btn-outline-danger" %>
       </div>
     </div>
   </div>
