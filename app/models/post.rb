@@ -8,9 +8,9 @@ class Post < ApplicationRecord
   attachment :image
   
   validates :image, presence: true
-  validates :title, presence: true, length: { maximum: 50}
-  validates :explanation, presence: true
-  validates :prefecture_id, presence: true, inclusion: { in: 1..47}
+  validates :title, presence: true, length: { maximum: 50 }
+  validates :explanation, presence: true, length: { maximum: 1000 }
+  validates :prefecture_id, presence: true, inclusion: { in: 1..47 }
   validates :place, presence: true
   validates :address, presence: true
   validates :genre, presence: true
