@@ -19,7 +19,7 @@ class User::UsersController < ApplicationController
 
   def index
     @users = User.all
-    @users = User.page(params[:page]).per(12)
+    @users = User.order(created_at: :desc).page(params[:page]).per(12)
   end
 
   private
