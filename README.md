@@ -1,4 +1,5 @@
-# fun cycle
+# FUN CYCLE
+![FUN CYCLE logo](/app/assets/images/logo.jpg)
 
 ## サイト概要
 サイクリスト同士が、サイクリングを通して出会った景色や道、お店等のサイクリングスポットを共有するSNSサイトです。  
@@ -39,7 +40,21 @@ Instagram等のSNSでも探すことも可能ですが、自転車専用のSNS�
 - 同じような走り方をするサイクリストとの交流をしたいとき。
 
 ## 設計書
-<...>
+- UIフロー図
+- ER図
+- テーブル定義書
+- 詳細設計書
+- ワイヤーフレーム
+
+## サイト・テストユーザー
+|  サイトリンク  |
+| ---- |
+| [FUN CYCLE](https://52.198.217.25) |
+
+-テストアカウント-
+|  メールアドレス  | パス |
+| ---- | ---- |
+| test@test | aaaaaa |
 
 ## チャレンジ要素一覧
 <https://docs.google.com/spreadsheets/d/1m0fVL-XabcsT2KMecsPG5hGlT70t5ysipkN9qRTdqxo/edit?usp=sharing>
@@ -53,5 +68,5 @@ Instagram等のSNSでも探すことも可能ですが、自転車専用のSNS�
 
 ## 使用素材
 - 自ら撮影した写真
-- [Canva](https://www.canva.com/)
+- ロゴ[Canva](https://www.canva.com/)
 
