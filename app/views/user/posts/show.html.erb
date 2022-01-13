@@ -25,8 +25,13 @@
           <div class="border-bottom p-3">
             <%= @post.explanation %>
           </div>
-          <div id="thanks-btn_<%= @post.id %>">
-            <%= render "user/thanks/thanks-btn", post: @post %>
+          <div class="d-flex justify-content-end">
+            <div id="thanks-btn_<%= @post.id %>">
+              <%= render "user/thanks/thanks-btn", post: @post %>
+            </div>
+            <div id="bookmark-btn_<%= @post.id %>">
+              <%= render "user/bookmarks/bookmark-btn", post: @post %>
+            </div>
           </div>
           <table class="table mt-3">
             <tbody class="table-light">

@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
   has_many :thanks, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   
   attachment :image
@@ -22,6 +23,11 @@ class Post < ApplicationRecord
   #ありがとう機能
   def thanked_by?(user)
     thanks.where(user_id: user.id).exists?
+  end
+  
+  #ブックマーク機能
+  def bookmarked_by?(user)
+    bookmarks.where(user_id: user.id).exists?
   end
   
   # 投稿の選択肢
