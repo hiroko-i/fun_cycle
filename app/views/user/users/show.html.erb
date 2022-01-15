@@ -15,9 +15,16 @@
           </ul>
         </div>
         <div class="col-3">
-          <% if @user.id == current_user.id %>
-            <%=  link_to "編集", edit_user_path(@user), class:"btn btn-outline-secondary px-4"%>
-          <% end %>
+            <% if @user.id == current_user.id %>
+              <div>
+                <%=  link_to "編集", edit_user_path(@user), class:"btn btn-outline-secondary px-4"%>
+              </div>
+              <div class="mt-3">
+                <%= link_to bookmarks_users_path, class:"btn btn-outline-secondary" do%>
+                  <i class="fas fa-bookmark text-dark"></i><span class="ms-2">ブックマーク</span>
+                <% end %>
+              </div>
+            <% end %>
         </div>
       </div>
     </div>
