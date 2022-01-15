@@ -21,6 +21,11 @@ class User::UsersController < ApplicationController
     @users = User.all
     @users = User.order(created_at: :desc).page(params[:page]).per(12)
   end
+  
+  def bookmark
+    @bookmarks = Bookmark.where(user_id: current_user.id).page(params[:page]).per(12)
+  end
+  
 
   private
 

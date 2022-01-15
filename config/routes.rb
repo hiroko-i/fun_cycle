@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     get 'search/posts' => 'searches#post_index'
     get 'search/map' => 'searches#post_map'
     
-    resources :users
+    resources :users do
+      get 'bookmarks' => 'users#bookmark', on: :collection
+    end
 
     resources :posts do
       resource :thanks, only:[:create, :destroy]

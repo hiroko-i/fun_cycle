@@ -12,7 +12,4 @@ class User::BookmarksController < ApplicationController
     bookmark.destroy
   end
   
-  def show
-  end
-  
 end
