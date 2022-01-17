@@ -86,7 +86,6 @@ gem 'enum_help'
 
 # 地図
 gem 'geocoder'
-gem 'dotenv-rails'
 gem 'gon'
 
 # デプロイ
