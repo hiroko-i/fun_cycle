@@ -40,16 +40,16 @@ Instagram等のSNSでも探すことも可能ですが、自転車専用のSNS�
 - 同じような走り方をするサイクリストとの交流をしたいとき。
 
 ## 設計書
-- UIフロー図
-- ER図
-- テーブル定義書
-- 詳細設計書
-- ワイヤーフレーム
+- [UIフロー図](https://drive.google.com/file/d/1-_K_JUcazo37lzwfFrVbgY7vTimGl-LL/view?usp=sharing)
+- [ER図](https://drive.google.com/file/d/1iSa1MPCkI3jrqGDLP6o_k_4-NijGGD4k/view?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1We2NccFzlH85XadJHiIl9ziSe_wGpSnhyL6FsASF9WU/edit?usp=sharing)
+- [詳細設計書](https://docs.google.com/spreadsheets/d/1We2NccFzlH85XadJHiIl9ziSe_wGpSnhyL6FsASF9WU/edit?usp=sharing)
+- [ワイヤーフレーム](https://drive.google.com/file/d/1evxrXgLhKwHidMC5FnentySEDP7yObgy/view?usp=sharing)
 
 ## サイト・テストユーザー
 |  サイトリンク  |
 | ---- |
-| [FUN CYCLE](https://52.198.217.25) |
+| [FUN CYCLE](http://52.198.217.25) |
 
 -テストアカウント-
 |  メールアドレス  | パス |
