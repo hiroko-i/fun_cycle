@@ -42,7 +42,7 @@
         </div>
         <div class="mb-3">
           <%= f.label :tag, "タグ (複数のタグは , (半角)で区切ってください)", class:"form-label" %>
-          <%= f.text_area :name, rows:"2", class:"form-control", placeholder:"サイクルラック,春,峠" %>
+          <%= f.text_area :name, rows:"2", value: @tag_list, class:"form-control", placeholder:"サイクルラック,春,峠" %>
         </div>
         <div class="mb-3 d-grid">
           <%= f.submit "投稿", class:"btn btn-lg btn-outline-success" %>

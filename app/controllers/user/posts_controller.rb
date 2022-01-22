@@ -14,6 +14,7 @@ class User::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @tag_list = ''
   end
 
   def create
@@ -24,6 +25,7 @@ class User::PostsController < ApplicationController
       @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
+      @tag_list = params[:post][:name]
       render :new
     end
   end
